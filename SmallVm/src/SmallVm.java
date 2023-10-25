@@ -3,7 +3,7 @@ import java.io.*;
 public class SmallVm {
 
 	public static final int MAX_MEMORY_SIZE = 10;
-	//public static Descriptor[] dataMemory;
+	public static Descriptor[] dataMemory;
 	public static String[] instructionsMemory;
 	public static boolean programIsRunning = false;
 	
@@ -47,7 +47,7 @@ public class SmallVm {
 	 */
 	public static void runProgram() {
 		
-		//dataMemory = new Descriptor[MAX_MEMORY_SIZE];
+		dataMemory = new Descriptor[MAX_MEMORY_SIZE];
 		int programCounter = 0;
 		
 		while(true) {
