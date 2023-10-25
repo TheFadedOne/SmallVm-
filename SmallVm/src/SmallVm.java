@@ -2,7 +2,7 @@ import java.io.*;
 
 public class SmallVm {
 
-	public static final int MAX_MEMORY_SIZE = 1000;
+	public static final int MAX_MEMORY_SIZE = 10;
 	//public static Descriptor[] dataMemory;
 	public static String[] instructionsMemory;
 	public static boolean programIsRunning = false;
