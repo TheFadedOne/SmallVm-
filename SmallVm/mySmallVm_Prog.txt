@@ -12,9 +12,9 @@ DIV average sum 2
 ;
 OUT "The average of"
 OUT number1
-OUT “and”
+OUT "and"
 OUT number2
-OUT “is”
+OUT "is"
 OUT average
 ;
 OUT "H A V E A N I C E D A Y !"

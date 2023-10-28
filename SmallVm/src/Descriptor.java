@@ -1,7 +1,6 @@
 
 public class Descriptor {
 
-	//Descriptor
 	public String name;
 	public int value;
 	
