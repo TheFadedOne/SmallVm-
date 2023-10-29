@@ -61,7 +61,7 @@ public class SmallVm {
 	
 	
 	/*
-	 * 
+	 * This method writes all of the instructions and output to the mySmallVm_Output.txt file.
 	 */
 	public static void writeToOutputFile(String string) {
 		try {
