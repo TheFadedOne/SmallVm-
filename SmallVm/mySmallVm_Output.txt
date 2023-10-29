@@ -1,0 +1,35 @@
+Andrew Blackwell, CSCI 4200, Fall 2023
+****************************************
+; Find the average of two input values
+;
+; Input the values
+OUT "Enter the first number:"
+IN number1
+OUT "Enter the second number:"
+IN number2
+;
+; Compute the average
+ADD sum number1 number2
+DIV average sum 2
+;
+OUT "The average of"
+OUT number1
+OUT "and"
+OUT number2
+OUT "is"
+OUT average
+;
+OUT "H A V E A N I C E D A Y !"
+HALT
+****************************************
+Enter the first number:
+67
+Enter the second number:
+11
+The average of
+67
+and
+11
+is
+39
+H A V E A N I C E D A Y !

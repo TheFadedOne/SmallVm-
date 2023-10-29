@@ -9,12 +9,23 @@ public class SmallVm {
 	public static String[] instructionsMemory;
 	public static boolean programIsRunning = false;
 	
+	public static BufferedWriter bufferedWriter;
+	
 	public static void main(String[] args) {
 		
-		System.out.println("Andrew Blackwell, CSCI 4200, Fall 2023");
-		System.out.println("****************************************");
+		// BufferedWriter used for printing output to text file.
+		try {
+			bufferedWriter = new BufferedWriter(new FileWriter("mySmallVm_Output.txt"));
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+		
+		writeToOutputFile("Andrew Blackwell, CSCI 4200, Fall 2023");
+		writeToOutputFile("****************************************");
         loadInstructionsToMemory();
-        System.out.println("****************************************");
+        writeToOutputFile("****************************************");
+        
         
         runProgram();
 	}
@@ -40,12 +51,25 @@ public class SmallVm {
         	int counter = 0;
 			while ((string = bufferedReader.readLine()) != null) {
 				instructionsMemory[counter] = string;
-				System.out.println(instructionsMemory[counter]);
+				writeToOutputFile(instructionsMemory[counter]);
 			    counter++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	/*
+	 * 
+	 */
+	public static void writeToOutputFile(String string) {
+		try {
+			bufferedWriter.write(string + "\n");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(string);
 	}
 	
 	
@@ -100,28 +124,32 @@ public class SmallVm {
 			}
 			programCounter++;
 		}
-		
-		System.out.println("program complete");
+		try {
+			bufferedWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
+	/*
+	 * ADD, SUB, MUL, DIV Instructions. Takes in two source values, performs the math operation, and then stores
+	 * the result in the specified destination.
+	 */
 	public static void add(String destination, String source1, String source2) {
 		int sum = getValueFromString(source1) + getValueFromString(source2);
 		sto(destination, String.valueOf(sum));
 	}
-	
 	
 	public static void sub(String destination, String source1, String source2) {
 		int difference = getValueFromString(source1) - getValueFromString(source2);
 		sto(destination, String.valueOf(difference));
 	}
 	
-	
 	public static void mul(String destination, String source1, String source2) {
 		int product = getValueFromString(source1) * getValueFromString(source2);
 		sto(destination, String.valueOf(product));
 	}
-	
 	
 	public static void div(String destination, String source1, String source2) {
 		int quotient = getValueFromString(source1) / getValueFromString(source2);
@@ -137,6 +165,7 @@ public class SmallVm {
 		Scanner scanner = new Scanner(System.in);
 		int source = scanner.nextInt();
 		sto(destination, String.valueOf(source));
+		writeToOutputFile(String.valueOf(source));
 	}
 	
 	
@@ -145,15 +174,18 @@ public class SmallVm {
 	 */
 	public static void out(String output) {
 		
+		String actualOutput = "";
+		
 		// Text string
 		if (output.charAt(0) == '"' && output.charAt(output.length() - 1) == '"')
 		{
-			System.out.println(output.substring(1, output.length() - 1));
+			actualOutput = output.substring(1, output.length() - 1);
 		} 
 		// Variable value
 		else {
-			System.out.println(dataMemory[getVariableIndex(output)].value);
+			actualOutput = String.valueOf(dataMemory[getVariableIndex(output)].value);
 		}
+		writeToOutputFile(actualOutput);
 	}
 	
 	

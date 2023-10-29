@@ -3,7 +3,7 @@
 ; Input the values
 OUT "Enter the first number:"
 IN number1
-OUT "Enter the first number:"
+OUT "Enter the second number:"
 IN number2
 ;
 ; Compute the average
